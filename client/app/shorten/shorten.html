@@ -1,10 +1,14 @@
 <div id='container'>
 <!-- Your code here -->
-<div >
-	<form name="shorten">
-		<input type="text" name="url"></input>
-	</form>
-</div>
+  <div class="creator">
+  	<form name="shortenForm" ng-submit="addLink()" autocomplete="off">
+  		<input type="text" name="url" ng-model="link.url" ng-class="{'error': !shortenForm.url.$valid}" ng-pattern="/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/" />
+  		<button ng-disabled="!shortenForm.url.$valid" type="submit"> Shorten </button>
+  			<div ng-show="!shortenForm.url.$valid" class="message" role="alert">
+					Enter a valid url!
+				</div>
+  	</form>	
+  </div>
 </div>
 
 

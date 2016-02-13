@@ -1,11 +1,13 @@
 <div id='container'>
   <!-- Your html here -->
-  <img src="assets/redirect_icon.png">
-<!--  <input type="text"></input>
- -->  
-	<div ng-repeat="link in data.links">
-  	<img src="assets/redirect_icon.png">
+ <input type="text" placeholder="filer url"></input>
+	<div class="link" ng-repeat="link in data.links">
+  	<img src="assets/redirect_icon.png"/>
   	<div class="linkinfo">
-  		<div class="visits">Visits</div>
+      <div class="visits"><span class="count">{{link.visits}}</span>Visits</div>
+      <div class="title">{{link.title}}</div>
+      <div class="original">{{link.url}}</div>
+  		<a ng-href="{{link.base_url + '/' + link.code}}">
+      <div>{{link.base_url + "/" + link.code}}</div>
   </div>
 </div>
