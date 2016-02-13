@@ -18,14 +18,23 @@ angular.module('shortly', [
     // ******Your code here*******
     .when('/links', {
       templateUrl: 'app/links/links.html',
-      controller: 'LinksController'
+      controller: 'LinksController',
+      auth: true
     })
     .when('/shorten',{
       templateUrl: 'app/shorten/shorten.html',
-      controller: 'ShortenController'
+      controller: 'ShortenController',
+      auth: true
+    })
+    .when('/', {
+      templateUrl: 'app/auth/sigin.html',
+      controller: 'AuthController'
     })
     .otherwise({
-      redirectTo: '/signin'
+      templateUrl: 'app/links/links.html',
+      controller: 'LinksController',
+      auth: true
+      
     })
 
 
