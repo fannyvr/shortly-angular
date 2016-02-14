@@ -1,9 +1,10 @@
 angular.module('shortly.shorten', [])
 
-.controller('ShortenController', function ($scope, $window, $location, Links, $http) {
-  // ****Your code here****
+.controller('ShortenController', function ($scope, $window, $location, Links) {
+  // Your code here
   $scope.link = {};
   $scope.addLink = function() {
+    $scope.loading = true;
     Links.addLink( $scope.link ).then(function(res){
       if(res.status === 200){
         onSuccess(res)      
@@ -14,11 +15,11 @@ angular.module('shortly.shorten', [])
     });
 
     function onSuccess(){
-      console.log('in onSuccess')
-      $window.location.href = $window.location.origin + "/#/links";
+      $scope.loading = false;
+      $location.path('/')
     }
     function onError(){
-      console.log('in onError')
+      console.log('There is an Error')
     }
   };
 });

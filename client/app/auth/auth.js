@@ -29,6 +29,4 @@ angular.module('shortly.auth', [])
         console.error(error);
       });
   };
-
-  //Add logout
 });

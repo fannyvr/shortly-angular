@@ -1,9 +1,17 @@
 <div id='signin'>
   <h1>signin</h1>
   <form name="signinForm" ng-submit='signin()'>
-    <input type='text'ng-model='user.username'>
-    <input type="password" ng-model='user.password'>
+    <input type='text' name="signedIn" ng-model='user.username' placeholder="user name"required ng-class="{'error':signinForm.signedIn.$invalid && signinForm.$dirty}">
+    <input type="password" name="userPass" ng-model='user.password' placeholder="password" required
+    ng-class="{'error':signinForm.userPass.$invalid && signinForm.$dirty}">
     <button>signin</button>
   </form>
   <a href="#/signup">Don't have an account? <strong>Signup</strong> ...</a>
+
+  <div ng-if="signinForm.signedIn.$error.required && signinForm.$dirty" class="message">
+  	<h3>User name required</h3>
+  </div>
+  <div ng-if="signinForm.userPass.$error.required && signinForm.$dirty" class="message">
+  	<h3>Password required</h3>
+  </div>
 </div>

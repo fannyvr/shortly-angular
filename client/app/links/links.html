@@ -1,13 +1,22 @@
+<div ng-controller="AuthController" ng-show="isAuth()" class="navigation">
+  <ul>
+    <li><a href="/#links">Links</a></li>
+    <li><a href="/#shorten">Shorten</a></li>
+    <li><a href="/#logout">Logout</a></li>
+  </ul>
+</div>
+
 <div id='container'>
-  <!-- Your html here -->
- <input type="text" placeholder="filer url"></input>
-	<div class="link" ng-repeat="link in data.links">
-  	<img src="assets/redirect_icon.png"/>
-  	<div class="linkinfo">
+
+<form name="search" ng-submit="getLinks()">
+  <input type="text" placeholder="filer url" ng-model="link.search">
+</form>
+  <div class="link" ng-repeat="link in data.links | filter:link.search | orderBy:'create_at'">
+    <img src="assets/redirect_icon.png"/>
+    <div class="linkinfo">
       <div class="visits"><span class="count">{{link.visits}}</span>Visits</div>
       <div class="title">{{link.title}}</div>
       <div class="original">{{link.url}}</div>
-  		<a ng-href="{{link.base_url + '/' + link.code}}">
-      <div>{{link.base_url + "/" + link.code}}</div>
+      <a ng-href= "http://localhost:3000/api/links/{{link.code}}">{{link.base_url}} / {{link.code}}</a>
   </div>
 </div>

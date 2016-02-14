@@ -1,14 +1,21 @@
-<div id='container'>
-<!-- Your code here -->
-  <div class="creator">
-  	<form name="shortenForm" ng-submit="addLink()" autocomplete="off">
-  		<input type="text" name="url" ng-model="link.url" ng-class="{'error': !shortenForm.url.$valid}" ng-pattern="/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/" />
-  		<button ng-disabled="!shortenForm.url.$valid" type="submit"> Shorten </button>
-  			<div ng-show="!shortenForm.url.$valid" class="message" role="alert">
-					Enter a valid url!
-				</div>
-  	</form>	
-  </div>
+ <div ng-controller="AuthController" ng-show="isAuth()" class="navigation">
+  <ul>
+    <li><a href="/#links">Links</a></li>
+    <li><a href="/#shorten">Shorten</a></li>
+    <li><a href="/#logout">Logout</a></li>
+  </ul>
 </div>
 
-
+<div class="creator">
+	<form name="shortenForm" ng-submit="addLink()" autocomplete="off" novalidate>
+	 <input type="url" name="link" ng-required="true" ng-model="link.url" ng-class="{'error':!shortenForm.$valid && shortenForm.$dirty}" placeholder="Enter url" required/>
+	 <button ng-disabled="shortenForm.$invalid" type="submit"> Add</button>
+   <span ng-if='loading'><img src="assets/spiffygif_46x46.gif"></span>
+  </form>
+	<div ng-if="shortenForm.link.$error.required && shorthenForm.$dirty" class="message">
+  <h2>url required!</h2>
+  </div>
+  <div ng-show="shortenForm.link.$error.url && shortenForm.$dirty" class="message">
+  <h2>Not a valid url!</h2>
+  </div>
+</div>
