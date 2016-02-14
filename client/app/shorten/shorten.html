@@ -7,12 +7,12 @@
 </div>
 
 <div class="creator">
-	<form name="shortenForm" ng-submit="addLink()" autocomplete="off" novalidate>
-	 <input type="url" name="link" ng-required="true" ng-model="link.url" ng-class="{'error':!shortenForm.$valid && shortenForm.$dirty}" placeholder="Enter url" required/>
-	 <button ng-disabled="shortenForm.$invalid" type="submit"> Add</button>
+  <form name="shortenForm" ng-submit="addLink()" autocomplete="off" novalidate>
+   <input type="url" name="link" ng-required="true" ng-model="link.url" ng-class="{'error':!shortenForm.$valid && shortenForm.$dirty}" placeholder="Enter url" required/>
+   <button ng-disabled="shortenForm.$invalid" type="submit"> Add</button>
    <span ng-if='loading'><img src="assets/spiffygif_46x46.gif"></span>
   </form>
-	<div ng-if="shortenForm.link.$error.required && shorthenForm.$dirty" class="message">
+  <div ng-if="shortenForm.link.$error.required && shorthenForm.$dirty" class="message">
   <h2>url required!</h2>
   </div>
   <div ng-show="shortenForm.link.$error.url && shortenForm.$dirty" class="message">
